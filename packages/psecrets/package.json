@@ -1,8 +1,11 @@
 {
   "name": "psecrets",
   "type": "module",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "",
+  "bin": {
+    "psecrets": "./node_modules/.bin/psecrets-cli"
+  },
   "exports": {
     ".": {
       "import": "./build/index.js",
@@ -30,6 +33,7 @@
     "dotenv": "^16.0.3",
     "dotenv-expand": "^10.0.0",
     "project": "workspace:*",
+    "psecrets-cli": "workspace:*",
     "vite": "^4.0.4",
     "zod": "^3.20.2"
   },
