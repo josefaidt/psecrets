@@ -1,0 +1,17 @@
+import { existsSync } from 'node:fs'
+import * as fs from 'node:fs/promises'
+import * as path from 'node:path'
+
+export async function readPackageJson(dir: string = process.cwd()) {
+  const root = process.cwd()
+  const packageJsonPath = path.join(root, 'package.json')
+  if (!existsSync(packageJsonPath)) {
+    throw new Error(
+      'package.json not found, are you in the root of your project?'
+    )
+  }
+  const contents = await fs.readFile(packageJsonPath, 'utf8')
+  return JSON.parse(contents)
+}
+
+export const packageJson = await readPackageJson()

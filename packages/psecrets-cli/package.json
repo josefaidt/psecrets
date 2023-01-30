@@ -1,0 +1,41 @@
+{
+  "name": "psecrets-cli",
+  "type": "module",
+  "version": "0.1.0",
+  "description": "",
+  "bin": {
+    "psecrets-cli": "./bin/cli.js"
+  },
+  "exports": {
+    ".": {
+      "import": "./build/cli.js",
+      "require": "./build/cli.cjs"
+    },
+    "./package.json": "./package.json"
+  },
+  "types": "./build/cli.d.ts",
+  "files": [
+    "bin",
+    "build"
+  ],
+  "scripts": {
+    "dev": "tsup --watch",
+    "build": "tsup",
+    "test": "vitest"
+  },
+  "dependencies": {
+    "commander": "^10.0.0",
+    "enquirer": "^2.3.6",
+    "inquirer": "^9.1.4",
+    "kleur": "^4.1.5",
+    "project": "workspace:*",
+    "psecrets": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/inquirer": "^9.0.3",
+    "@types/node": "^18.11.18",
+    "tsup": "^6.5.0",
+    "typescript": "^4.9.4",
+    "vitest": "^0.27.2"
+  }
+}
