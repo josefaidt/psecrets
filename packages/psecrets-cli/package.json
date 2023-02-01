@@ -1,8 +1,9 @@
 {
   "name": "psecrets-cli",
+  "private": true,
   "type": "module",
   "version": "0.1.0",
-  "description": "",
+  "description": "cli utility for psecrets",
   "bin": {
     "psecrets-cli": "./bin/cli.js"
   },
@@ -29,7 +30,7 @@
     "inquirer": "^9.1.4",
     "kleur": "^4.1.5",
     "project": "workspace:*",
-    "psecrets": "workspace:*"
+    "psecrets-core": "workspace:*"
   },
   "devDependencies": {
     "@types/inquirer": "^9.0.3",
