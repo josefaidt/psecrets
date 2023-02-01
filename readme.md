@@ -1,8 +1,8 @@
 # psecrets
 
-utility CLI for AWS SSM Parameter Store
+Utility for AWS SSM Parameter Store
 
-```
+```bash
 Usage: psecrets [options] [command]
 
 Manage secrets from AWS SSM Parameter Store
