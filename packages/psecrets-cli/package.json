@@ -10,7 +10,7 @@
   "exports": {
     ".": {
       "import": "./build/cli.js",
-      "require": "./build/cli.cjs"
+      "types": "./build/cli.d.ts"
     },
     "./package.json": "./package.json"
   },
