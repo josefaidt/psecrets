@@ -9,13 +9,14 @@ import {
   setSecret,
   removeSecret,
   uploadSecrets,
-} from 'psecrets'
+} from 'psecrets-core'
 import { project } from './project.js'
 
 export function createProgram() {
   program
     .name('psecrets')
     .description('Manage secrets from AWS SSM Parameter Store')
+    .version(process.env.PACKAGE_VERSION)
 
   program
     .command('get')
