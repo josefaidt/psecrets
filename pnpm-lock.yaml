@@ -47,27 +47,16 @@ importers:
 
   packages/psecrets:
     specifiers:
-      '@aws-sdk/client-ssm': ^3.252.0
       '@types/node': ^18.11.18
-      dotenv: ^16.0.3
-      dotenv-expand: ^10.0.0
-      project: workspace:*
       psecrets-cli: workspace:*
+      psecrets-core: workspace:*
       tsup: ^6.5.0
       typescript: ^4.9.4
-      vite: ^4.0.4
       vitest: ^0.27.2
-      zod: ^3.20.2
-    dependencies:
-      '@aws-sdk/client-ssm': 3.252.0
-      dotenv: 16.0.3
-      dotenv-expand: 10.0.0
-      project: link:../project
-      psecrets-cli: link:../psecrets-cli
-      vite: 4.0.4_@types+node@18.11.18
-      zod: 3.20.2
     devDependencies:
       '@types/node': 18.11.18
+      psecrets-cli: link:../psecrets-cli
+      psecrets-core: link:../psecrets-core
       tsup: 6.5.0_typescript@4.9.4
       typescript: 4.9.4
       vitest: 0.27.2
@@ -81,7 +70,7 @@ importers:
       inquirer: ^9.1.4
       kleur: ^4.1.5
       project: workspace:*
-      psecrets: workspace:*
+      psecrets-core: workspace:*
       tsup: ^6.5.0
       typescript: ^4.9.4
       vitest: ^0.27.2
@@ -91,9 +80,34 @@ importers:
       inquirer: 9.1.4
       kleur: 4.1.5
       project: link:../project
-      psecrets: link:../psecrets
+      psecrets-core: link:../psecrets-core
     devDependencies:
       '@types/inquirer': 9.0.3
+      '@types/node': 18.11.18
+      tsup: 6.5.0_typescript@4.9.4
+      typescript: 4.9.4
+      vitest: 0.27.2
+
+  packages/psecrets-core:
+    specifiers:
+      '@aws-sdk/client-ssm': ^3.252.0
+      '@types/node': ^18.11.18
+      dotenv: ^16.0.3
+      dotenv-expand: ^10.0.0
+      project: workspace:*
+      tsup: ^6.5.0
+      typescript: ^4.9.4
+      vite: ^4.0.4
+      vitest: ^0.27.2
+      zod: ^3.20.2
+    dependencies:
+      '@aws-sdk/client-ssm': 3.252.0
+      dotenv: 16.0.3
+      dotenv-expand: 10.0.0
+      project: link:../project
+      vite: 4.0.4_@types+node@18.11.18
+      zod: 3.20.2
+    devDependencies:
       '@types/node': 18.11.18
       tsup: 6.5.0_typescript@4.9.4
       typescript: 4.9.4
