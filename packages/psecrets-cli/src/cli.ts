@@ -1,4 +1,4 @@
-import { program } from 'commander'
+import { program } from '@commander-js/extra-typings'
 import kleur from 'kleur'
 import { project } from './project.js'
 import * as download from './commands/download.js'
@@ -19,10 +19,12 @@ export function createProgram() {
     .name('psecrets')
     .description('Manage secrets from AWS SSM Parameter Store')
     .version(process.env.PACKAGE_VERSION)
+    .option('-d, --debug', 'enable debug mode')
 
   console.debug(kleur.cyan(`commands preparing`))
   for (const command of commands) {
     program.addCommand(command)
+    console.debug('\tadded command', command.name())
   }
   console.debug(kleur.cyan(`commands ready`))
 

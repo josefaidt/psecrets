@@ -1,14 +1,17 @@
-import { createCommand } from 'commander'
 import inquirer from 'inquirer'
 import kleur from 'kleur'
-import { setSecret } from 'psecrets-core'
+import { setSecret, setPublic } from 'psecrets-core'
+import { createCommand } from '../create-command.js'
 import { project } from '../project.js'
 
 export const command = createCommand('set')
-  .description('Set secrets')
+  .alias('s')
+  .alias('create') // maybe change to create?
+  .description('set a secret')
   .argument('<name>', 'Name of the secret')
   .argument('[value]', 'Value of the secret')
-  .action(async (name, value) => {
+  .option('-p, --public', 'make the secret public (not encrypted)')
+  .action(async (name, value, options) => {
     let secretValue = value
     if (!value) {
       const answer = await inquirer.prompt([
@@ -21,10 +24,20 @@ export const command = createCommand('set')
       secretValue = answer.value
     }
     try {
-      await setSecret(project, name, secretValue)
+      if (options.public) {
+        await setPublic(project, name, secretValue)
+      } else {
+        await setSecret(project, name, secretValue)
+      }
       console.log(`Set ${name} successfully`)
     } catch (error) {
-      console.error(kleur.red(`Unable to set secret ${name}`))
+      console.error(
+        kleur.red(
+          `Unable to set ${
+            options.public ? 'public parameter' : 'secret'
+          } ${name}`
+        )
+      )
       console.debug(error)
     }
   })

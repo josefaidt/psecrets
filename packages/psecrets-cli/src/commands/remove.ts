@@ -1,7 +1,7 @@
-import { createCommand } from 'commander'
 import inquirer from 'inquirer'
 import kleur from 'kleur'
 import { removeSecret } from 'psecrets-core'
+import { createCommand } from '../create-command.js'
 import { project } from '../project.js'
 
 export const command = createCommand('remove')

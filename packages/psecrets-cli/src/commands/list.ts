@@ -1,12 +1,12 @@
 import { EOL } from 'node:os'
-import { createCommand } from 'commander'
 import kleur from 'kleur'
 import { getSecrets } from 'psecrets-core'
+import { createCommand } from '../create-command.js'
 import { project } from '../project.js'
 
 export const command = createCommand('list')
   .alias('ls')
-  .description('List secrets')
+  .description('list secrets')
   .action(async () => {
     let secrets: any[] = []
     try {
