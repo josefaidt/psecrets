@@ -1,6 +1,7 @@
 import { program } from '@commander-js/extra-typings'
 import kleur from 'kleur'
 import { project } from './project.js'
+import { loadConfig } from './load-config.js'
 import * as download from './commands/download.js'
 import * as get from './commands/get.js'
 import * as list from './commands/list.js'
@@ -13,6 +14,7 @@ const commands = [download, get, list, remove, set, upload].map(
 )
 
 export function createProgram() {
+  loadConfig()
   console.debug(kleur.cyan(`Project: ${project.name}`))
 
   program
