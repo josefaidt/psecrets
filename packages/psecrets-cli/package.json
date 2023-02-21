@@ -31,7 +31,8 @@
     "inquirer": "^9.1.4",
     "kleur": "^4.1.5",
     "project": "workspace:*",
-    "psecrets-core": "workspace:*"
+    "psecrets-core": "workspace:*",
+    "zod": "^3.20.6"
   },
   "devDependencies": {
     "@types/inquirer": "^9.0.3",

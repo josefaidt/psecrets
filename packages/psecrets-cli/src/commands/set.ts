@@ -2,7 +2,7 @@ import inquirer from 'inquirer'
 import kleur from 'kleur'
 import { setSecret, setPublic } from 'psecrets-core'
 import { createCommand } from '../create-command.js'
-import { project } from '../project.js'
+import { createProject } from '../project.js'
 
 export const command = createCommand('set')
   .alias('s')
@@ -11,7 +11,8 @@ export const command = createCommand('set')
   .argument('<name>', 'Name of the secret')
   .argument('[value]', 'Value of the secret')
   .option('-p, --public', 'make the secret public (not encrypted)')
-  .action(async (name, value, options) => {
+  .action(async (name, value, options, command) => {
+    const project = await createProject(command.optsWithGlobals())
     let secretValue = value
     if (!value) {
       const answer = await inquirer.prompt([
@@ -22,6 +23,10 @@ export const command = createCommand('set')
         },
       ])
       secretValue = answer.value
+    }
+    if (!secretValue) {
+      console.error(kleur.red('No value provided'))
+      return
     }
     try {
       if (options.public) {
