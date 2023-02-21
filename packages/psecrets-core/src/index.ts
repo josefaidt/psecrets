@@ -1,6 +1,7 @@
 export * from './download-secrets.js'
 export * from './get-secret.js'
 export * from './get-secrets.js'
+export * from './load-dotenv.js'
 export * from './remove-secret.js'
 export * from './remove-secrets.js'
 export * from './set-parameter.js'

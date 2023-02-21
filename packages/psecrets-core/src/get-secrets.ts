@@ -2,16 +2,23 @@ import {
   GetParametersByPathCommand,
   ParameterNotFound,
 } from '@aws-sdk/client-ssm'
+import { z } from 'zod'
 import { client } from './ssm-client.js'
 import { createSecretKeyPrefix } from './support.js'
 import type { Project } from 'project'
+
+const options_schema = z.object({
+  json: z.boolean().optional().default(false),
+})
 
 /**
  * Get all secrets for a project
  */
 export async function getSecrets(
-  project: Project
+  project: Project,
+  options?: z.infer<typeof options_schema>
 ): Promise<Record<string, string>> {
+  const parsed_options = options_schema.parse(options || {})
   const prefix = createSecretKeyPrefix(project) + '/'
   const command = new GetParametersByPathCommand({
     Path: prefix,
