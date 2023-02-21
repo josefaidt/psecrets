@@ -1,14 +1,24 @@
 import { defineConfig } from 'tsup'
+import { builtinModules } from 'module'
+import pkg from './package.json' assert { type: 'json' }
+import type { Options as TsupOptions } from 'tsup'
 
-export default defineConfig({
-  define: {
-    'import.meta.vitest': 'undefined',
-  },
-  entry: ['src/index.ts'],
+const lib: TsupOptions = {
+  entry: ['src/index.ts', 'src/env.ts'],
   format: ['esm'],
   outDir: 'build',
   dts: true,
-  splitting: false,
   sourcemap: true,
   clean: true,
-})
+}
+
+const cli: TsupOptions = {
+  entry: ['src/cli.ts'],
+  format: ['esm'],
+  outDir: 'build',
+  dts: false,
+  sourcemap: false,
+  clean: false,
+}
+
+export default defineConfig([lib, cli])
