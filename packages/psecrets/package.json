@@ -9,6 +9,10 @@
       "import": "./build/index.js",
       "types": "./build/index.d.ts"
     },
+    "./env": {
+      "import": "./build/env.js",
+      "types": "./build/env.d.ts"
+    },
     "./package.json": "./package.json"
   },
   "types": "./build/index.d.ts",
@@ -25,10 +29,10 @@
     "psecrets-core": "workspace:*"
   },
   "devDependencies": {
-    "@types/node": "^18.11.18",
-    "tsup": "^6.5.0",
-    "typescript": "^4.9.4",
-    "vitest": "^0.27.2"
+    "@types/node": "^18.15.3",
+    "tsup": "^6.7.0",
+    "typescript": "^5.0.2",
+    "vitest": "^0.29.3"
   },
   "repository": {
     "type": "git",

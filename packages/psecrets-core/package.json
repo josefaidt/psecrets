@@ -21,18 +21,18 @@
     "test": "vitest"
   },
   "dependencies": {
-    "@aws-sdk/client-ssm": "^3.252.0",
+    "@aws-sdk/client-ssm": "^3.294.0",
     "dotenv": "^16.0.3",
     "dotenv-expand": "^10.0.0",
     "project": "workspace:*",
-    "vite": "^4.0.4",
-    "zod": "^3.20.2"
+    "vite": "^4.2.0",
+    "zod": "^3.21.4"
   },
   "devDependencies": {
-    "@types/node": "^18.11.18",
-    "tsup": "^6.5.0",
-    "typescript": "^4.9.4",
-    "vitest": "^0.27.2"
+    "@types/node": "^18.15.3",
+    "tsup": "^6.7.0",
+    "typescript": "^5.0.2",
+    "vitest": "^0.29.3"
   },
   "repository": {
     "type": "git",

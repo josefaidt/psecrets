@@ -7,18 +7,19 @@
     "test": "turbo run test",
     "lint": "prettier --plugin-search-dir . --check . && eslint .",
     "format": "prettier --plugin-search-dir . --write .",
-    "ci": "pnpm lint && pnpm test"
+    "ci": "pnpm lint && pnpm test",
+    "setup-dev": "pnpm install && pnpm build && pnpm --dir packages/psecrets-cli-dev link --global"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^5.48.0",
-    "@typescript-eslint/parser": "^5.48.0",
-    "esbuild": "^0.16.15",
-    "eslint": "^8.31.0",
-    "eslint-config-prettier": "^8.6.0",
-    "lint-staged": "^13.1.0",
-    "prettier": "^2.8.2",
-    "turbo": "^1.6.3",
-    "typescript": "^4.9.4"
+    "@typescript-eslint/eslint-plugin": "^5.55.0",
+    "@typescript-eslint/parser": "^5.55.0",
+    "esbuild": "^0.17.12",
+    "eslint": "^8.36.0",
+    "eslint-config-prettier": "^8.7.0",
+    "lint-staged": "^13.2.0",
+    "prettier": "^2.8.4",
+    "turbo": "^1.8.3",
+    "typescript": "^5.0.2"
   },
   "prettier": {
     "tabWidth": 2,
