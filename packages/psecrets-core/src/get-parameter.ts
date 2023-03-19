@@ -23,10 +23,7 @@ export async function getParameter(
   })
   try {
     const { Parameter } = await client.send(command)
-    if (parsed_options.json) {
-      return Parameter
-    }
-    return Parameter?.Value
+    return Parameter
   } catch (cause) {
     if (cause instanceof ParameterNotFound) {
       return undefined
