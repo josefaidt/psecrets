@@ -9,10 +9,6 @@
       "import": "./build/index.js",
       "types": "./build/index.d.ts"
     },
-    "./env": {
-      "import": "./build/env.js",
-      "types": "./build/env.d.ts"
-    },
     "./package.json": "./package.json"
   },
   "types": "./build/index.d.ts",
