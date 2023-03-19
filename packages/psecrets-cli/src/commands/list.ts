@@ -1,20 +1,23 @@
 import { EOL } from 'node:os'
 import kleur from 'kleur'
 import { getSecrets } from 'psecrets-core'
-import { createCommand } from '../create-command.js'
+import { createProjectCommand } from '../create-project-command.js'
 import { createProject } from '../project.js'
 
-export const command = createCommand('list')
+export const command = createProjectCommand('list')
   .alias('ls')
   .description('list secrets')
   .action(async (options, command) => {
-    const project = await createProject(command.optsWithGlobals())
+    const project = await createProject({
+      name: options.name,
+      env: options.env,
+    })
     const noSecretsFoundMessage = `No secrets found for ${project.name} and environment ${project.env}`
     let secrets: any[] = []
     try {
       secrets = Object.keys(await getSecrets(project))
     } catch (error) {
-      console.error(kleur.red(noSecretsFoundMessage))
+      return console.error(kleur.red(noSecretsFoundMessage))
     }
     if (secrets.length) {
       console.log(secrets.join(EOL))

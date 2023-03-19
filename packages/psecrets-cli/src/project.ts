@@ -1,10 +1,12 @@
 import { resolve } from 'project'
 import type { ProjectOptions } from 'project'
 
-export async function createProject(options?: ProjectOptions) {
+type CreateProjectOptions = Omit<ProjectOptions, 'name'> & { name?: string }
+
+export async function createProject(options?: CreateProjectOptions) {
   const existing = await resolve()
   console.debug('loaded existing project', existing)
-  return { ...existing, ...options }
+  return { ...options, ...existing }
 }
 
 export const project = await resolve()

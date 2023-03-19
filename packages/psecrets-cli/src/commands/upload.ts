@@ -1,12 +1,15 @@
 import kleur from 'kleur'
 import { uploadSecrets } from 'psecrets-core'
-import { createCommand } from '../create-command.js'
+import { createProjectCommand } from '../create-project-command.js'
 import { createProject } from '../project.js'
 
-export const command = createCommand('upload')
+export const command = createProjectCommand('upload')
   .description('upload secrets from a dotenv file')
   .action(async (options, command) => {
-    const project = await createProject(command.optsWithGlobals())
+    const project = await createProject({
+      env: options.env,
+      name: options.name,
+    })
     try {
       await uploadSecrets(project)
       console.log('Uploaded successfully')

@@ -1,18 +1,21 @@
 import inquirer from 'inquirer'
 import kleur from 'kleur'
 import { setSecret, setPublic } from 'psecrets-core'
-import { createCommand } from '../create-command.js'
+import { createProjectCommand } from '../create-project-command.js'
 import { createProject } from '../project.js'
 
-export const command = createCommand('set')
+export const command = createProjectCommand('set')
   .alias('s')
   .alias('create') // maybe change to create?
   .description('set a secret')
-  .argument('<name>', 'Name of the secret')
+  .argument('<secret-name>', 'Name of the secret')
   .argument('[value]', 'Value of the secret')
   .option('-p, --public', 'make the secret public (not encrypted)')
   .action(async (name, value, options, command) => {
-    const project = await createProject(command.optsWithGlobals())
+    const project = await createProject({
+      env: options.env,
+      name: options.name,
+    })
     let secretValue = value
     if (!value) {
       const answer = await inquirer.prompt([

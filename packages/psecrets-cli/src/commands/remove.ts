@@ -1,16 +1,19 @@
 import inquirer from 'inquirer'
 import kleur from 'kleur'
 import { removeSecret } from 'psecrets-core'
-import { createCommand } from '../create-command.js'
+import { createProjectCommand } from '../create-project-command.js'
 import { createProject } from '../project.js'
 
-export const command = createCommand('remove')
+export const command = createProjectCommand('remove')
   .alias('rm')
   .description('remove secrets')
   .argument('<name>', 'Name of the secret')
   .option('-y, --yes', 'Skip confirmation')
   .action(async (name, options, command) => {
-    const project = await createProject(command.optsWithGlobals())
+    const project = await createProject({
+      env: options.env,
+      name: options.name,
+    })
     if (!options.yes) {
       const answer = await inquirer.prompt([
         {
