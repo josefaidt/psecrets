@@ -8,7 +8,7 @@
     "lint": "prettier --plugin-search-dir . --check . && eslint .",
     "format": "prettier --plugin-search-dir . --write .",
     "ci": "pnpm lint && pnpm test",
-    "setup-dev": "pnpm install && pnpm build && pnpm --dir packages/psecrets-cli-dev link --global"
+    "setup-dev": "pnpm install && pnpm build && pnpm --dir packages/psecrets/dev link --global"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.55.0",

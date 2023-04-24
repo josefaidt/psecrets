@@ -1,4 +1,3 @@
-import { EOL } from 'node:os'
 import { program as Program } from '@commander-js/extra-typings'
 import kleur from 'kleur'
 import { project } from './project.js'
@@ -22,17 +21,6 @@ export function createProgram() {
     .description('manage secrets from AWS SSM Parameter Store')
     .version(process.env.PACKAGE_VERSION)
     .option('-d, --debug', 'enable debug mode')
-    // .option(
-    //   '-n, --name <name>',
-    //   'project name (default: name from package.json)',
-    //   project.name
-    // )
-    // .option(
-    //   '-e, --env <environment-name>',
-    //   'environment name (default: development)',
-    //   'development'
-    // )
-    // @todo FIX this is not outputting with color
     .configureOutput({
       writeOut: (str) => process.stdout.write(str),
       writeErr: (str) => process.stderr.write(str),

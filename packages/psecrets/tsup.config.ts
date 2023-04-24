@@ -1,6 +1,4 @@
 import { defineConfig } from 'tsup'
-import { builtinModules } from 'module'
-import pkg from './package.json' assert { type: 'json' }
 import type { Options as TsupOptions } from 'tsup'
 
 const lib: TsupOptions = {
@@ -19,6 +17,7 @@ const cli: TsupOptions = {
   dts: false,
   sourcemap: false,
   clean: false,
+  bundle: true,
 }
 
 export default defineConfig([lib, cli])

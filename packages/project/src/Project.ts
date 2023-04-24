@@ -1,14 +1,15 @@
 import { z } from 'zod'
 
-const schema = z.object({
+export const schema = z.object({
   /**
    * Project name
+   * @todo dynamic default from package.json
    */
   name: z.string().optional().default('my-project'),
   env: z.string().optional().default('development'),
 })
 
-type ProjectOptions = z.infer<typeof schema>
+export type ProjectOptions = z.infer<typeof schema>
 
 export class Project {
   /**
