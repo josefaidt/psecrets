@@ -1,0 +1,5 @@
+{
+  "name": "psecrets-dev",
+  "type": "module",
+  "bin": "./psecrets-dev.js"
+}
