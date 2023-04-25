@@ -1,6 +1,6 @@
 import { z } from 'zod'
 
-export const schema = z.object({
+export const ProjectSchema = z.object({
   /**
    * Project name
    * @todo dynamic default from package.json
@@ -9,8 +9,11 @@ export const schema = z.object({
   env: z.string().optional().default('development'),
 })
 
-export type ProjectOptions = z.infer<typeof schema>
+export type ProjectOptions = z.infer<typeof ProjectSchema>
 
+/**
+ * Project configuration
+ */
 export class Project {
   /**
    * Project name
@@ -22,16 +25,12 @@ export class Project {
   public env: string
 
   constructor(options?: ProjectOptions) {
-    const opts = schema.parse(options || {})
+    const opts = ProjectSchema.parse(options || {})
     this.name = opts.name
     this.env = opts.env
   }
 }
 
 export function createProject(options?: ProjectOptions): Project {
-  return new Project(options)
-}
-
-export function defineProject(options?: ProjectOptions): Project {
   return new Project(options)
 }
