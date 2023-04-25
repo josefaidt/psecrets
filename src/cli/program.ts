@@ -14,7 +14,8 @@ const commands = [download, get, list, remove, set, upload].map(
 )
 
 export function createProgram() {
-  loadConfig()
+  const config = loadConfig()
+  console.debug('config', JSON.stringify(config, null, 2))
   console.debug(kleur.cyan(`project: ${project.name}`))
 
   Program.name('psecrets')

@@ -1,4 +1,3 @@
-import { defineConfig } from 'tsup'
 import type { Options } from 'tsup'
 
 const lib: Options = {
@@ -10,7 +9,7 @@ const lib: Options = {
   outDir: 'build',
   platform: 'node',
   dts: true,
-  splitting: false,
+  splitting: true,
   sourcemap: true,
   clean: true,
 }
@@ -23,7 +22,7 @@ const cli: Options = {
   format: ['esm'],
   outDir: 'build',
   platform: 'node',
-  dts: false,
+  dts: true,
   splitting: true,
   sourcemap: false,
   clean: false,

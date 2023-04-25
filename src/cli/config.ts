@@ -12,13 +12,15 @@ export const ResolvedConfig = z.object({
 export type ResolvedConfig = z.infer<typeof ResolvedConfig>
 
 export function defineConfig(config: UserConfig) {
-  console.debug('[config] received config', config)
+  // console.debug('[config] received config', config)
   const parsed = UserConfig.parse(config)
-  console.debug('[config] parsed config', config)
+  // console.debug('[config] parsed config', config)
   const resolved = ResolvedConfig.parse(parsed)
-  console.debug('[config] resolved config', config)
+  // console.debug('[config] resolved config', config)
+
   /* config setters */
   setLogLevel(resolved.PSECRETS_LOG_LEVEL)
   /* end config setters */
+
   return resolved
 }

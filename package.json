@@ -9,7 +9,8 @@
       "types": "./build/index.d.ts"
     },
     "./cli": {
-      "import": "./build/cli.js"
+      "import": "./build/cli.js",
+      "types": "./build/cli.d.ts"
     }
   },
   "scripts": {
