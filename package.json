@@ -13,6 +13,10 @@
       "types": "./build/cli.d.ts"
     }
   },
+  "files": [
+    "bin",
+    "build"
+  ],
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
