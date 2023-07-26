@@ -3,7 +3,7 @@ import kleur from 'kleur'
 import { setPublic } from '@/core/set-public.js'
 import { setSecret } from '@/core/set-secret.js'
 import { createProjectCommand } from '../create-project-command.js'
-import { createProject } from '../project.js'
+import { createProject } from '../create-project.js'
 
 export const command = createProjectCommand('set')
   .alias('s')

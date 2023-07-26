@@ -2,7 +2,7 @@ import inquirer from 'inquirer'
 import kleur from 'kleur'
 import { removeSecret } from '@/core/remove-secret.js'
 import { createProjectCommand } from '../create-project-command.js'
-import { createProject } from '../project.js'
+import { createProject } from '../create-project.js'
 
 export const command = createProjectCommand('remove')
   .alias('rm')

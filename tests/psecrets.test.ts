@@ -1,17 +1,18 @@
 import * as fs from 'node:fs/promises'
 import {
+  createSecretKey,
   getSecret,
   getSecrets,
   setSecret,
+  setSecrets,
   downloadSecrets,
   uploadSecrets,
   removeSecret,
   removeSecrets,
-} from '../src/index.js'
+} from '@/index.js'
 import { parse } from 'dotenv'
 import { createProject } from '@/support/Project.js'
-import { createSecretKey } from '../src/index.js'
-import { env, projectName } from './env.sample.js'
+import { env } from './env.sample.js'
 
 const TEST_SECRET_NAME = 'TEST'
 const TEST_SECRET_VALUE = 'test'
@@ -21,29 +22,22 @@ const project = createProject({
 })
 const key = createSecretKey(project, TEST_SECRET_NAME)
 
-describe('secrets usage workflow', () => {
-  beforeAll(() => {
-    vi.mock('vite', async (loadOriginal) => {
-      const original = (await loadOriginal()) as Record<string, unknown>
-      return { ...original, loadEnv: () => env }
-    })
-  })
-
-  afterAll(() => {
-    vi.restoreAllMocks()
-  })
-
+describe('psecrets usage workflow', () => {
   it('set-secret', async () => {
-    await setSecret(project, key, TEST_SECRET_VALUE)
+    await setSecret(project, TEST_SECRET_NAME, TEST_SECRET_VALUE)
+  })
+
+  it('set-secrets', async () => {
+    await setSecrets(project, env)
   })
 
   it('get-secret', async () => {
-    const secret = await getSecret(project, key)
-    expect(secret).toEqual(TEST_SECRET_VALUE)
+    const secret = await getSecret(project, TEST_SECRET_NAME)
+    expect(secret?.Value).toEqual(TEST_SECRET_VALUE)
   })
 
   it('upload-secrets', async () => {
-    await uploadSecrets(projectName)
+    await uploadSecrets(project)
   })
 
   it('get-secrets', async () => {
@@ -67,8 +61,8 @@ describe('secrets usage workflow', () => {
   })
 
   it('removes a secret', async () => {
-    await removeSecret(project, key)
-    const secret = await getSecret(project, key)
+    await removeSecret(project, TEST_SECRET_NAME)
+    const secret = await getSecret(project, TEST_SECRET_NAME)
     expect(secret).toEqual(undefined)
   })
 

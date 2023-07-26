@@ -2,7 +2,7 @@ import { EOL } from 'node:os'
 import kleur from 'kleur'
 import { getSecrets } from '@/core/get-secrets.js'
 import { createProjectCommand } from '../create-project-command.js'
-import { createProject } from '../project.js'
+import { createProject } from '../create-project.js'
 
 export const command = createProjectCommand('list')
   .alias('ls')
@@ -12,7 +12,7 @@ export const command = createProjectCommand('list')
       name: options.name,
       env: options.env,
     })
-    const noSecretsFoundMessage = `No secrets found for ${project.name} and environment ${project.env}`
+    const noSecretsFoundMessage = `No secrets found for project "${project.name}" and environment "${project.env}"`
     let secrets: any[] = []
     try {
       secrets = Object.keys(await getSecrets(project))

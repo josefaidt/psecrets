@@ -1,6 +1,6 @@
 import { resolve } from 'node:path'
 import { spawn } from 'node:child_process'
-import { LOG_LEVEL } from '../../src/config.js'
+import { LOG_LEVEL } from '@/cli/support/log-level.js'
 
 const cli = resolve(process.cwd(), 'bin/cli.js')
 
@@ -9,22 +9,21 @@ export async function run(args: string[], debug: boolean = false) {
     process.env.PSECRETS_LOG_LEVEL = LOG_LEVEL.DEBUG
   }
   const spawned = spawn(cli, args, {})
-  const output = await new Promise<string>((resolve, reject) => {
-    let stdout = ''
-    let stderr = ''
+  const result = await new Promise<string>((resolve, reject) => {
+    let output = ''
     spawned.stdout?.on('data', (data) => {
-      stdout += data
+      output += data
     })
     spawned.stderr?.on('data', (data) => {
-      stderr += data
+      output += data
     })
     spawned.on('close', (code) => {
       if (code === 0) {
-        resolve(stdout)
+        resolve(output)
       } else {
-        reject(new Error(stderr, { code }))
+        reject(new Error(output))
       }
     })
   })
-  return output.trim()
+  return result.trim()
 }

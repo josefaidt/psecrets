@@ -1,12 +1,15 @@
 import { resolveProject } from '@/support/resolve-project.js'
 import type { ProjectOptions } from '@/support/Project.js'
 
-type CreateProjectOptions = Omit<ProjectOptions, 'name'> & { name?: string }
+type CreateProjectOptions = Omit<ProjectOptions, 'name'> & {
+  name?: string | undefined
+}
 
 export async function createProject(options?: CreateProjectOptions) {
   const existing = await resolveProject()
   console.debug('loaded existing project', existing)
-  return { ...existing, ...options }
+  return {
+    name: options?.name ?? existing.name,
+    env: options?.env ?? existing.env,
+  }
 }
-
-export const project = await resolveProject()

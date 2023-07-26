@@ -8,5 +8,7 @@ import { defineConfig } from './config.js'
 export function loadConfig(dir: string = process.cwd()) {
   const env = loadDotenv('local', dir, ['PSECRETS_'])
   const config = defineConfig(env)
+  console.debug('loaded env vars', env)
+  console.debug('defined config', config)
   return config
 }

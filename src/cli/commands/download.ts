@@ -1,7 +1,7 @@
 import kleur from 'kleur'
 import { downloadSecrets } from '@/core/download-secrets.js'
 import { createProjectCommand } from '../create-project-command.js'
-import { createProject } from '../project.js'
+import { createProject } from '../create-project.js'
 
 export const command = createProjectCommand('download')
   .alias('dl')

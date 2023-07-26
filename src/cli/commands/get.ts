@@ -1,7 +1,7 @@
 import kleur from 'kleur'
 import { getSecret } from '@/core/get-secret.js'
 import { createProjectCommand } from '../create-project-command.js'
-import { createProject } from '../project.js'
+import { createProject } from '../create-project.js'
 
 export const command = createProjectCommand('get')
   .description('get secrets')

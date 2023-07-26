@@ -1,0 +1,29 @@
+name: Publish package to npm
+on:
+  release:
+    types: [published]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 20
+          registry-url: 'https://registry.npmjs.org'
+      - name: corepack-enable
+        run: corepack enable
+      - name: pnpm-setup
+        run: corepack prepare pnpm@8.3.0 --activate
+      - name: pnpm-store
+        run: echo "dir=$(pnpm store path)" >> $GITHUB_OUTPUT
+      - name: pnpm-cache
+        uses: actions/cache@v3
+        with:
+          path: ${{ steps.pnpm-store.outputs.dir }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: ${{ runner.os }}-pnpm-store-
+      - run: pnpm ci
+      - run: pnpm publish --provenance
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

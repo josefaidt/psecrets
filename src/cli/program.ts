@@ -1,6 +1,6 @@
 import { program as Program } from '@commander-js/extra-typings'
 import kleur from 'kleur'
-import { project } from './project.js'
+import { createProject } from './create-project.js'
 import { loadConfig } from './load-config.js'
 import * as download from './commands/download.js'
 import * as get from './commands/get.js'
@@ -13,14 +13,15 @@ const commands = [download, get, list, remove, set, upload].map(
   ({ command }) => command
 )
 
-export function createProgram() {
+export async function createProgram() {
   const config = loadConfig()
+  const project = await createProject()
   console.debug('config', JSON.stringify(config, null, 2))
   console.debug(kleur.cyan(`project: ${project.name}`))
 
   Program.name('psecrets')
     .description('manage secrets from AWS SSM Parameter Store')
-    .option('-d, --debug', 'enable debug mode')
+    // .option('-d, --debug', 'enable debug mode')
     .configureOutput({
       writeOut: (str) => process.stdout.write(str),
       writeErr: (str) => process.stderr.write(str),
@@ -56,4 +57,4 @@ export function createProgram() {
   return Program
 }
 
-export const program = createProgram()
+export const program = await createProgram()

@@ -1,4 +1,4 @@
-import { readPackageJson } from './packageJson.js'
+import { readPackageJson } from './read-package-json.js'
 import { createProject } from './Project.js'
 
 export async function resolveProject(path?: string) {

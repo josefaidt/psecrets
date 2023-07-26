@@ -10,8 +10,7 @@ export async function readPackageJson(dir: string = process.cwd()) {
       'package.json not found, are you in the root of your project?'
     )
   }
+  console.debug('resolved package.json at', packageJsonPath)
   const contents = await fs.readFile(packageJsonPath, 'utf8')
   return JSON.parse(contents)
 }
-
-export const packageJson = await readPackageJson()
