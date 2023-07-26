@@ -20,6 +20,7 @@
   ],
   "scripts": {
     "build": "tsup",
+    "prepublishOnly": "pnpm build",
     "dev": "tsup --watch",
     "test": "vitest",
     "lint": "prettier --plugin-search-dir . --check . && eslint .",
